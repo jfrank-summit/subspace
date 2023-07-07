@@ -22,4 +22,4 @@ The structure of this repository is the following:
 
 Please refer to [farming.md](/docs/farming.md) on how to run farmer. 
 
-If you are looking to farm offline, or build from source for development purposes please refer to [development.md](/docs/development.md).
+If you want to farm offline, or build from source for development purposes please refer to [development.md](/docs/development.md).
