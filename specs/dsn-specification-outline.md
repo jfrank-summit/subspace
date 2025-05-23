@@ -1,14 +1,20 @@
 # Distributed Storage Network (DSN) Specification Outline
 
+> 📄 **Note**: For a concise overview of the DSN system, see the [DSN Specification Summary](./dsn-specification-summary.md).
+
 ## 1. Introduction
 - Purpose and goals of the DSN
 - Key properties (Permissionlessness, Retrievability, Verifiability, Durability, Uniformity)
 - Relationship to Subspace Network consensus
 
+> 📖 See [DSN Key Findings](./dsn-key-findings.md) for current implementation status
+
 ## 2. Architecture Overview
 - Two-layer storage architecture
 - Component interactions
 - Data flow overview
+
+> 📖 See [DSN Implementation Mapping](./dsn-implementation-mapping.md) for code locations
 
 ## 3. Storage Layers
 
@@ -19,6 +25,8 @@
 - Plot expiration and replotting mechanism
 - Security guarantees
 
+> 📖 See [DSN Algorithms](./dsn-algorithms.md#2-piece-distribution-algorithm) for distribution details
+
 ### 3.2 L2 - Pieces Cache Layer  
 - Purpose: Fast retrieval of frequently accessed pieces
 - Farmer cache implementation
@@ -26,7 +34,11 @@
 - Cache capacity management
 - Piece proximity calculation
 
+> 📖 See [DSN Algorithms](./dsn-algorithms.md#3-cache-management-algorithms) for cache algorithms
+
 ## 4. Data Structures
+
+> 📖 **Complete specification available**: [DSN Data Structures](./dsn-data-structures.md)
 
 ### 4.1 Piece Structure
 - Piece index types (source vs parity)
@@ -44,6 +56,8 @@
 - Object reconstruction from pieces
 
 ## 5. Networking Protocols
+
+> 📖 **Complete specification available**: [DSN Protocols Specification](./dsn-protocols-specification.md)
 
 ### 5.1 Request/Response Protocols
 - PieceByIndexRequest/Response
@@ -63,6 +77,8 @@
 
 ## 6. Retrieval Mechanisms
 
+> 📖 See [DSN Algorithms](./dsn-algorithms.md#4-retrieval-algorithms) for retrieval strategies
+
 ### 6.1 Piece Provider
 - Piece retrieval strategies
 - Retry logic
@@ -75,12 +91,16 @@
 - Length decoding
 - Hash verification
 
+> 📖 See [DSN Algorithms](./dsn-algorithms.md#5-object-reconstruction-algorithm) for reconstruction
+
 ### 6.3 Segment Downloading
 - Full segment retrieval
 - Concurrent piece fetching
 - Progress tracking
 
 ## 7. Caching System
+
+> 📖 See [DSN Algorithms](./dsn-algorithms.md#3-cache-management-algorithms) for detailed algorithms
 
 ### 7.1 Farmer Cache
 - Cache initialization
@@ -108,6 +128,8 @@
 
 ## 9. Performance Considerations
 
+> 📖 See [DSN Usage Patterns](./dsn-usage-patterns.md#performance-considerations) for optimization strategies
+
 ### 9.1 Latency Optimization
 - Cache hit rates
 - Parallel downloads
@@ -132,6 +154,11 @@
 
 ## 11. Implementation Details
 
+> 📖 **Implementation guidance available**: 
+> - [DSN Implementation Guide](./dsn-implementation-guide.md) - How to implement DSN components
+> - [DSN Implementation Mapping](./dsn-implementation-mapping.md) - Code structure and locations
+> - [DSN Usage Patterns](./dsn-usage-patterns.md) - How services use DSN
+
 ### 11.1 Key Components
 - `subspace-networking` crate
 - `subspace-farmer` cache implementation
@@ -148,18 +175,26 @@
 - Network health monitoring
 - Request latency tracking
 
+> 📖 See [DSN Protocols Specification](./dsn-protocols-specification.md#10-monitoring-and-metrics) for required metrics
+
 ## Appendices
 
 ### A. Message Formats
 - Detailed protocol message specifications
 - Encoding schemes
 
+> 📖 See [DSN Protocols Specification](./dsn-protocols-specification.md#3-message-formats) for complete formats
+
 ### B. Algorithms
 - Piece selection algorithm
 - Cache eviction policy
 - Distance calculations
 
+> 📖 See [DSN Algorithms](./dsn-algorithms.md) for all algorithm specifications
+
 ### C. Constants and Limits
 - Maximum object sizes
 - Piece dimensions
-- Network parameters 
+- Network parameters
+
+> 📖 See [DSN Data Structures](./dsn-data-structures.md#7-constants-and-limits) for all constants 
