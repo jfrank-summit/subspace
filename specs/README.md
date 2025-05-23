@@ -61,6 +61,14 @@ Summary of findings from analyzing the codebase, including:
 - Configuration parameters
 - Performance characteristics
 
+#### 8. [DSN Usage Patterns](./dsn-usage-patterns.md)
+Comprehensive documentation of how DSN is used by various services:
+- Node synchronization (sync from DSN, snap sync)
+- Farmer operations (caching, plotting)
+- Gateway service for object retrieval
+- RPC endpoints and archiver integration
+- Performance considerations and best practices
+
 ## Quick Reference
 
 ### DSN Layers
@@ -98,6 +106,7 @@ Pieces are distributed based on proximity calculations, ensuring uniform distrib
 7. Developed practical implementation guide
 8. Created executive summary document
 9. **Added direct code links throughout all documents**
+10. **Documented how DSN is used by various services**
 
 ### 🚧 Future Documentation Opportunities
 1. Performance benchmarking guidelines
@@ -132,11 +141,13 @@ Pieces are distributed based on proximity calculations, ensuring uniform distrib
 3. Review [Data Structures](./dsn-data-structures.md) for type definitions
 4. Study [Algorithms](./dsn-algorithms.md) for core logic
 5. Check [Protocols](./dsn-protocols-specification.md) for network communication
+6. Explore [Usage Patterns](./dsn-usage-patterns.md) to see how services use DSN
 
 ### Common Tasks
 - **Implementing a Farmer**: See section 3 in Implementation Guide
 - **Piece Retrieval**: See section 4 in Implementation Guide
 - **Object Fetching**: See section 5 in Implementation Guide
+- **Service Integration**: See Usage Patterns document
 - **Debugging**: See section 10 in Implementation Guide
 
 ## Contributing
@@ -162,5 +173,6 @@ DSN Specifications/
 ├── dsn-algorithms.md               [Core algorithms]
 ├── dsn-implementation-guide.md     [How to implement]
 ├── dsn-implementation-mapping.md   [Code locations]
-└── dsn-key-findings.md            [Analysis results]
+├── dsn-key-findings.md            [Analysis results]
+└── dsn-usage-patterns.md          [Service integration]
 ``` 
