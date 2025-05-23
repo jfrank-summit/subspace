@@ -10,6 +10,8 @@ This document specifies the core algorithms used in the Subspace DSN for piece d
 
 The DSN uses XOR distance to determine which farmers store which pieces, ensuring uniform distribution.
 
+📍 **Implementation**: [`crates/subspace-networking/src/utils/key_with_distance.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/key_with_distance.rs)
+
 #### 2.1.1 Distance Calculation
 
 ```rust
@@ -46,6 +48,8 @@ fn select_pieces_for_plot(
     selected_pieces
 }
 ```
+
+📍 **Related**: [`crates/subspace-farmer/src/single_disk_farm/plotting.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/single_disk_farm/plotting.rs)
 
 ### 2.2 Plot Expiration Algorithm
 
@@ -112,6 +116,8 @@ fn select_pieces_for_cache(
 }
 ```
 
+📍 **Implementation**: [`crates/subspace-farmer/src/farmer_cache.rs:484`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs#L484) (similar logic)
+
 ### 3.2 Cache Synchronization
 
 Algorithm for keeping cache synchronized with new segments.
@@ -144,6 +150,8 @@ async fn synchronize_cache(
     }
 }
 ```
+
+📍 **Implementation**: [`crates/subspace-farmer/src/farmer_cache.rs:683`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs#L683) (`process_segment_header` method)
 
 ### 3.3 Cache Eviction Policy
 
@@ -178,6 +186,8 @@ fn evict_piece(cache: &mut HashMap<PieceIndex, CacheEntry>) -> Option<PieceIndex
     Some(piece_to_evict)
 }
 ```
+
+📍 **Related**: Cache eviction is implicitly handled in [`crates/subspace-farmer/src/farmer_cache/piece_cache_state.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache/piece_cache_state.rs)
 
 ## 4. Retrieval Algorithms
 
@@ -219,6 +229,8 @@ async fn get_piece_by_random_walk(
     None
 }
 ```
+
+📍 **Implementation**: [`crates/subspace-networking/src/utils/piece_provider.rs:287`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/piece_provider.rs#L287) (`get_piece_by_random_walking`)
 
 ### 4.2 Parallel Piece Retrieval
 
@@ -265,6 +277,8 @@ async fn download_pieces_parallel(
 }
 ```
 
+📍 **Implementation**: [`shared/subspace-data-retrieval/src/piece_fetcher.rs`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/piece_fetcher.rs) (`download_pieces` function)
+
 ## 5. Piece Validation Algorithm
 
 ### 5.1 KZG Commitment Verification
@@ -287,6 +301,8 @@ fn validate_piece(
     expected_commitment == *commitment
 }
 ```
+
+📍 **Implementation**: [`crates/subspace-farmer/src/farmer_piece_getter/piece_validator.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_piece_getter/piece_validator.rs)
 
 ## 6. Object Reconstruction Algorithm
 
@@ -334,6 +350,8 @@ async fn reconstruct_object(
 }
 ```
 
+📍 **Implementation**: [`shared/subspace-data-retrieval/src/object_fetcher.rs:336`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/object_fetcher.rs#L336) (`fetch_object` method)
+
 ## 7. Performance Optimizations
 
 ### 7.1 Batch Processing
@@ -374,6 +392,8 @@ impl ConnectionPool {
 }
 ```
 
+📍 **Related**: Connection management in [`crates/subspace-networking/src/node_runner.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/node_runner.rs)
+
 ## 8. Constants and Parameters
 
 ```rust
@@ -392,6 +412,10 @@ const DEFAULT_RANDOM_WALK_ROUNDS: usize = 3;
 /// LRU cache time window
 const CACHE_TIME_WINDOW: Duration = Duration::from_secs(3600);
 ```
+
+📍 **Constants defined in**:
+- [`crates/subspace-farmer/src/farmer_cache.rs:44`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs#L44) (SYNC_BATCH_SIZE)
+- [`crates/subspace-networking/src/utils/piece_provider.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/piece_provider.rs) (retrieval logic)
 
 ## 9. Algorithm Complexity
 

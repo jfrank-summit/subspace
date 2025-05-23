@@ -14,6 +14,8 @@ A unique identifier for each piece in the network.
 struct PieceIndex(u64);
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/pieces.rs:61`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs#L61)
+
 **Properties:**
 - Monotonically increasing
 - Source pieces have specific positions
@@ -44,6 +46,8 @@ Identifier for archived segments.
 struct SegmentIndex(u64);
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/segments.rs:56`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/segments.rs#L56)
+
 **Constants:**
 ```rust
 impl SegmentIndex {
@@ -59,6 +63,8 @@ impl SegmentIndex {
 struct Blake3Hash([u8; 32]);
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/hashes.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/hashes.rs)
+
 ## 3. Piece Structure
 
 ### 3.1 Piece
@@ -73,6 +79,8 @@ impl Piece {
     pub const SIZE: usize = 1_048_576;
 }
 ```
+
+📍 **Source**: [`crates/subspace-core-primitives/src/pieces.rs:1004`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs#L1004)
 
 **Properties:**
 - Fixed size: 1,048,576 bytes (1 MiB)
@@ -94,6 +102,8 @@ impl RawRecord {
 }
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/pieces.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs)
+
 ### 3.3 Record
 
 Encoded piece with commitment.
@@ -104,6 +114,8 @@ struct Record {
     commitment: RecordCommitment,
 }
 ```
+
+📍 **Source**: [`crates/subspace-core-primitives/src/pieces.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs)
 
 ## 4. Segment Structure
 
@@ -124,6 +136,8 @@ impl RecordedHistorySegment {
     pub const NUM_PIECES: usize = /* implementation defined */;
 }
 ```
+
+📍 **Source**: [`crates/subspace-core-primitives/src/segments.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/segments.rs)
 
 ### 4.2 SegmentHeader
 
@@ -156,6 +170,8 @@ struct LastArchivedBlock {
 }
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/segments.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/segments.rs)
+
 ### 4.3 SegmentItem
 
 Items within a segment (used during archiving).
@@ -176,6 +192,8 @@ enum SegmentItem {
 }
 ```
 
+📍 **Source**: [`crates/subspace-archiving/src/archiver.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-archiving/src/archiver.rs)
+
 ## 5. Object Mapping
 
 ### 5.1 GlobalObject
@@ -191,6 +209,8 @@ struct GlobalObject {
     pub offset: u32,
 }
 ```
+
+📍 **Source**: [`crates/subspace-core-primitives/src/objects.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/objects.rs)
 
 **Constraints:**
 - `piece_index` must be a source piece
@@ -215,6 +235,8 @@ impl GlobalObjectMapping {
 }
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/objects.rs:116`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/objects.rs#L116)
+
 ### 5.3 BlockObject
 
 Object representing archived block data.
@@ -229,6 +251,8 @@ struct BlockObject {
 }
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/objects.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/objects.rs)
+
 ### 5.4 BlockObjectMapping
 
 Mapping of blocks to their piece locations.
@@ -239,6 +263,8 @@ enum BlockObjectMapping {
     V0(Vec<BlockObject>),
 }
 ```
+
+📍 **Source**: [`crates/subspace-core-primitives/src/objects.rs:32`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/objects.rs#L32)
 
 ## 6. Distance and Proximity
 
@@ -261,6 +287,8 @@ impl KeyWithDistance {
 }
 ```
 
+📍 **Source**: [`crates/subspace-networking/src/utils/key_with_distance.rs:10`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/key_with_distance.rs#L10)
+
 **Distance Calculation:**
 - XOR distance between peer ID and target
 - Used for determining which farmers store which pieces
@@ -276,6 +304,8 @@ Offset within a piece cache.
 struct PieceCacheOffset(u32);
 ```
 
+📍 **Source**: [`crates/subspace-farmer/src/farm.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farm.rs)
+
 ### 7.2 PieceCacheId
 
 Unique identifier for a piece cache instance.
@@ -283,6 +313,8 @@ Unique identifier for a piece cache instance.
 ```rust
 struct PieceCacheId(Uuid);
 ```
+
+📍 **Source**: [`crates/subspace-farmer/src/farm.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farm.rs)
 
 ### 7.3 FarmerCacheOffset
 
@@ -297,6 +329,8 @@ struct FarmerCacheOffset {
     piece_offset: PieceCacheOffset,
 }
 ```
+
+📍 **Source**: [`crates/subspace-farmer/src/farmer_cache.rs:62`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs#L62)
 
 ## 8. Networking Structures
 
@@ -314,6 +348,8 @@ impl From<PieceIndex> for RecordKey {
 }
 ```
 
+📍 **Source**: libp2p's kad module
+
 ### 8.2 Multihash
 
 Multi-format hash used in libp2p.
@@ -325,6 +361,8 @@ struct Multihash {
     digest: Vec<u8>,
 }
 ```
+
+📍 **Source**: [`crates/subspace-networking/src/utils/multihash.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/multihash.rs)
 
 ## 9. Encoding and Serialization
 
@@ -363,6 +401,8 @@ const BLAKE3_HASH_SIZE: usize = 32;
 const MAX_SEGMENT_PADDING: usize = /* implementation defined */;
 ```
 
+📍 **Source**: [`crates/subspace-core-primitives/src/pieces.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs)
+
 ### 10.2 Limits
 
 ```rust
@@ -372,6 +412,8 @@ const MAX_SUPPORTED_OBJECT_LENGTH: usize = /* see object_fetcher */;
 /// Recommended pieces per cached request
 const CACHED_PIECES_RECOMMENDED_LIMIT: usize = 10;
 ```
+
+📍 **Source**: [`shared/subspace-data-retrieval/src/object_fetcher.rs`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/object_fetcher.rs)
 
 ## 11. Implementation Notes
 
@@ -390,6 +432,8 @@ Objects spanning multiple pieces:
 2. Fetch pieces (may span segments)
 3. Handle segment headers and padding
 4. Concatenate and verify hash
+
+📍 **Implementation**: [`shared/subspace-data-retrieval/src/object_fetcher.rs`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/object_fetcher.rs)
 
 ### 11.3 Segment Boundaries
 

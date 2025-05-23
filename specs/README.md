@@ -7,6 +7,10 @@ This folder contains the specification and documentation for the Subspace Distri
 ### [DSN Specification Summary](./dsn-specification-summary.md)
 A concise overview of the entire DSN system, perfect for getting started.
 
+## 📍 Code Navigation
+
+All specification documents include direct links to the actual implementation code. Look for the 📍 **Source** or 📍 **Implementation** markers throughout the documents to jump directly to the relevant code.
+
 ## Documents
 
 ### Core Specifications
@@ -93,6 +97,7 @@ Pieces are distributed based on proximity calculations, ensuring uniform distrib
 6. Documented core algorithms (distribution, caching, retrieval)
 7. Developed practical implementation guide
 8. Created executive summary document
+9. **Added direct code links throughout all documents**
 
 ### 🚧 Future Documentation Opportunities
 1. Performance benchmarking guidelines
@@ -143,6 +148,7 @@ When adding new specifications:
 4. Cross-reference related documents
 5. Update this README with new documents
 6. Consider implementation feasibility
+7. **Include direct links to relevant code with 📍 markers**
 
 ## Document Map
 

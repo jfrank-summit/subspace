@@ -31,6 +31,8 @@ async fn create_node() -> Result<Node, Error> {
 }
 ```
 
+📍 **Example**: [`crates/subspace-farmer/src/bin/subspace-farmer/commands/shared/network.rs:105`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/bin/subspace-farmer/commands/shared/network.rs#L105)
+
 ### 2.2 Implementing Request Handlers
 
 ```rust
@@ -66,6 +68,8 @@ fn create_piece_handler(
     })
 }
 ```
+
+📍 **Implementation**: [`crates/subspace-farmer/src/bin/subspace-farmer/commands/shared/network.rs:161`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/bin/subspace-farmer/commands/shared/network.rs#L161)
 
 ## 3. Implementing a Farmer
 
@@ -119,6 +123,8 @@ impl Plot {
 }
 ```
 
+📍 **Related**: [`crates/subspace-farmer/src/single_disk_farm/plot.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/single_disk_farm/plot.rs)
+
 ### 3.2 L2 Cache Implementation
 
 ```rust
@@ -171,6 +177,8 @@ impl PieceCache for L2CacheImpl {
 }
 ```
 
+📍 **Reference Implementation**: [`crates/subspace-farmer/src/single_disk_farm/piece_cache.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/single_disk_farm/piece_cache.rs)
+
 ### 3.3 Piece Selection
 
 ```rust
@@ -200,6 +208,8 @@ async fn select_pieces_for_cache(
         .collect()
 }
 ```
+
+📍 **Implementation**: [`crates/subspace-farmer/src/farmer_cache.rs:517`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs#L517) (similar logic in `should_include_piece_in_cache`)
 
 ## 4. Implementing Piece Retrieval
 
@@ -273,6 +283,8 @@ impl DsnPieceProvider {
 }
 ```
 
+📍 **Example**: [`crates/subspace-farmer/src/farmer_piece_getter.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_piece_getter.rs)
+
 ### 4.2 Batch Retrieval
 
 ```rust
@@ -298,6 +310,8 @@ async fn get_pieces_batch(
     results
 }
 ```
+
+📍 **Implementation**: [`shared/subspace-data-retrieval/src/piece_fetcher.rs:96`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/piece_fetcher.rs#L96) (`download_pieces`)
 
 ## 5. Implementing Object Fetching
 
@@ -357,6 +371,8 @@ impl<PG: PieceGetter> ObjectFetcherImpl<PG> {
 }
 ```
 
+📍 **Implementation**: [`shared/subspace-data-retrieval/src/object_fetcher.rs`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/object_fetcher.rs)
+
 ## 6. Best Practices
 
 ### 6.1 Error Handling
@@ -404,6 +420,8 @@ impl DsnMetrics {
     }
 }
 ```
+
+📍 **Example**: [`crates/subspace-farmer/src/farmer_cache/metrics.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache/metrics.rs)
 
 ### 6.3 Testing
 
@@ -485,6 +503,8 @@ async fn download_all(indices: Vec<PieceIndex>) {
 }
 ```
 
+📍 **Example**: [`shared/subspace-data-retrieval/src/piece_fetcher.rs:96`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/piece_fetcher.rs#L96)
+
 ## 8. Integration Examples
 
 ### 8.1 Complete Farmer Setup
@@ -529,6 +549,8 @@ async fn setup_farmer(
     })
 }
 ```
+
+📍 **Reference**: [`crates/subspace-farmer/src/single_disk_farm.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/single_disk_farm.rs)
 
 ## 9. Performance Tips
 

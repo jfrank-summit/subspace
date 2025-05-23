@@ -36,16 +36,22 @@ The Subspace Distributed Storage Network (DSN) is a two-layer decentralized stor
 - **PieceIndex**: Unique identifier for each piece
 - **GlobalObject**: Maps objects to piece locations
 
+📍 **Definitions**: [`crates/subspace-core-primitives/src/pieces.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-core-primitives/src/pieces.rs)
+
 ### 2. Networking Protocols
 - **PieceByIndexRequest/Response**: L1 retrieval
 - **CachedPieceByIndexRequest/Response**: L2 retrieval
 - **SegmentHeaderRequest/Response**: Metadata retrieval
+
+📍 **Protocols**: [`crates/subspace-networking/src/protocols/request_response/`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/protocols/request_response/)
 
 ### 3. Key Algorithms
 - **Proximity Calculation**: XOR distance between peer ID and piece
 - **Cache Selection**: Closest pieces by proximity
 - **Random Walk**: Discovery mechanism when direct retrieval fails
 - **LRU Eviction**: Cache management with proximity weighting
+
+📍 **Implementation**: [`crates/subspace-networking/src/utils/key_with_distance.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/key_with_distance.rs)
 
 ### 4. Retrieval Flow
 ```
@@ -62,6 +68,8 @@ The Subspace Distributed Storage Network (DSN) is a two-layer decentralized stor
 5. Validate and return
 ```
 
+📍 **Implementation**: [`crates/subspace-networking/src/utils/piece_provider.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-networking/src/utils/piece_provider.rs)
+
 ## Implementation Status
 
 ### ✅ Fully Implemented
@@ -70,6 +78,8 @@ The Subspace Distributed Storage Network (DSN) is a two-layer decentralized stor
 - Multi-tier retrieval with fallbacks
 - Piece validation via KZG commitments
 - Prometheus metrics for monitoring
+
+📍 **Farmer Implementation**: [`crates/subspace-farmer/`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/)
 
 ### 🚧 Partially Implemented
 - Object storage (blockchain data only)
@@ -88,6 +98,8 @@ The Subspace Distributed Storage Network (DSN) is a two-layer decentralized stor
 - **Cache Batch Size**: 256 pieces
 - **Concurrent Downloads**: 10 (default)
 - **Random Walk Rounds**: 3 (default)
+
+📍 **Constants**: [`crates/subspace-farmer/src/farmer_cache.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farmer_cache.rs)
 
 ## Security Model
 
@@ -128,6 +140,10 @@ trait ObjectFetcher {
     async fn fetch_object(&self, mapping: GlobalObject) -> Result<Vec<u8>>;
 }
 ```
+
+📍 **Traits**: 
+- [`shared/subspace-data-retrieval/src/piece_getter.rs`](https://github.com/autonomys/subspace/blob/main/shared/subspace-data-retrieval/src/piece_getter.rs)
+- [`crates/subspace-farmer/src/farm.rs`](https://github.com/autonomys/subspace/blob/main/crates/subspace-farmer/src/farm.rs)
 
 ## Future Considerations
 
